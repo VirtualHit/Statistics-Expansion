@@ -70,7 +70,7 @@ public class StatisticsExpansion extends PlaceholderExpansion implements Cacheab
 
         switch (identifier.toLowerCase()) {
             case "mine_block": {
-                return calculateTotal(player, Statistic.MINE_BLOCK);
+                return String.valueOf(Integer.parseInt(calculateTotal(player, Statistic.MINE_BLOCK)) / 2);
             }
 
             case "use_item": {
