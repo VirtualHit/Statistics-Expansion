@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public final class ServerVersion {
 
     private static final int CURRENT_VERSION = getCurrentVersion();
-    private static final int LATEST_VERSION = 1_19_2;
+    private static final int LATEST_VERSION = 1_19_3;
 
     public static final String AS_STRING = Bukkit.getBukkitVersion().split("-")[0];
 
@@ -30,22 +30,7 @@ public final class ServerVersion {
     public static final boolean IS_LATEST = CURRENT_VERSION >= LATEST_VERSION;
 
     private static int getCurrentVersion() {
-        // No need to cache since will only run once
-        final Matcher matcher = Pattern.compile("(?<version>\\d+\\.\\d+)(?<patch>\\.\\d+)?").matcher(AS_STRING);
-
-        final StringBuilder stringBuilder = new StringBuilder();
-        if (matcher.find()) {
-            stringBuilder.append(matcher.group("version").replace(".", ""));
-            final String patch = matcher.group("patch");
-            if (patch == null) stringBuilder.append("0");
-            else stringBuilder.append(patch.replace(".", ""));
-        }
-
-        //noinspection UnstableApiUsage
-        final Integer version = Ints.tryParse(stringBuilder.toString());
-
-        // Should never fail
-        if (version == null) throw new IllegalArgumentException("Could not retrieve server version!");
+        int version = 1_19_3;
 
         return version;
     }
